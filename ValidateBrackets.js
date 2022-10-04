@@ -1,4 +1,4 @@
-var isValidate = function(s) {
+var isValid = function(s) {
     var array = [];
     var map = {
         '(': ')',
