@@ -11,29 +11,19 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
-    let count = 0
-    let current = head
-    while(current) {
-        count++
-        current = current.next
-    }
+    let fast = head
+    let slow = head
     
-    count += 1
-    count = count - n
-    let value = 1
-    current = head
-    let temp = current
-    if(count == 1) {
-        temp = head.next
-        return temp
+    for(let i=0; i<n; i++) {
+        fast = fast.next
     }
-    while(current && value < count) {
-        temp = current
-        current = current.next
-        value++
-    }
-    temp.next = current.next
-    current.next = null
+     
+    if(!fast) return head.next
     
-    return head        
+    while(fast.next != null) {
+        fast = fast.next
+        slow = slow.next
+    }
+    slow.next = slow.next.next
+    return head
 };
